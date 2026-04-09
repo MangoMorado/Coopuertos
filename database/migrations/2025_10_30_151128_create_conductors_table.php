@@ -20,12 +20,15 @@ return new class extends Migration
             $table->enum('conductor_tipo', ['A', 'B']); // Tipo A (camionetas), Tipo B (busetas)
             $table->enum('rh', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->string('numero_interno')->nullable();
+            $table->string('vehiculo')->nullable();
             $table->string('celular')->nullable();
             $table->string('correo')->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->string('otra_profesion')->nullable();
             $table->longText('foto')->nullable();
+            $table->string('ruta_carnet')->nullable();
             $table->string('nivel_estudios')->nullable();
+            $table->boolean('relevo')->default(false);
             $table->enum('estado', ['activo', 'inactivo'])->default('activo');
             $table->timestamps();
         });

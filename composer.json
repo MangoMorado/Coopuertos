@@ -8,28 +8,28 @@
     "require": {
         "php": "^8.2",
         "ext-imagick": "*",
-        "darkaonline/l5-swagger": "^10.0",
+        "darkaonline/l5-swagger": "^11.0",
         "dompdf/dompdf": "^3.1",
         "enshrined/svg-sanitize": "^0.22.0",
-        "laravel/framework": "^12.0",
-        "laravel/mcp": "^0.5.2",
+        "laravel/framework": "^13.0",
+        "laravel/mcp": "^0.6.5",
         "laravel/sanctum": "*",
-        "laravel/tinker": "^2.10.1",
+        "laravel/tinker": "^3.0",
         "maatwebsite/excel": "^3.1",
         "phpdocumentor/shim": "^3.9",
         "simplesoftwareio/simple-qrcode": "^4.2",
-        "spatie/laravel-permission": "^6.24"
+        "spatie/laravel-permission": "^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "laravel/boost": "^1.8",
+        "laravel/boost": "^2.4",
         "laravel/breeze": "^2.3",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.3"
+        "phpunit/phpunit": "^13.1"
     },
     "autoload": {
         "psr-4": {

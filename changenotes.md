@@ -1,5 +1,10 @@
 # Coopuertos App
 
+## *v. 0.3.3.4.2*
+- Actualizacion a Laravel 13 y deps (Swagger 11, Spatie 7, PHPUnit 13, Vite 8, Tailwind 4.2, Cropper 2).
+- Migraciones: columnas en migraciones base; quitadas las incrementales redundantes.
+- Foto conductor: Cropper.js v2 (web components).
+
 ## *v. 0.3.3.4.1*
 - Actualizado el Roadmap y Documentación de la fase beta
 

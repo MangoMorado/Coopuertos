@@ -1,5 +1,27 @@
-// Image Cropper para conductores
-document.addEventListener('DOMContentLoaded', function() {
+// Image Cropper para conductores (Cropper.js v2: web components)
+// Misma lógica que public/js/image-cropper.js (referencia si se empaqueta con Vite).
+
+const CROPPER_TEMPLATE =
+    '<cropper-canvas background>' +
+    '<cropper-image rotatable scalable skewable translatable></cropper-image>' +
+    '<cropper-shade hidden></cropper-shade>' +
+    '<cropper-handle action="select" plain></cropper-handle>' +
+    '<cropper-selection initial-coverage="0.8" aspect-ratio="1" movable resizable>' +
+    '<cropper-grid role="grid" bordered covered></cropper-grid>' +
+    '<cropper-crosshair centered></cropper-crosshair>' +
+    '<cropper-handle action="move" theme-color="rgba(255, 255, 255, 0.35)"></cropper-handle>' +
+    '<cropper-handle action="n-resize"></cropper-handle>' +
+    '<cropper-handle action="e-resize"></cropper-handle>' +
+    '<cropper-handle action="s-resize"></cropper-handle>' +
+    '<cropper-handle action="w-resize"></cropper-handle>' +
+    '<cropper-handle action="ne-resize"></cropper-handle>' +
+    '<cropper-handle action="nw-resize"></cropper-handle>' +
+    '<cropper-handle action="se-resize"></cropper-handle>' +
+    '<cropper-handle action="sw-resize"></cropper-handle>' +
+    '</cropper-selection>' +
+    '</cropper-canvas>';
+
+document.addEventListener('DOMContentLoaded', function () {
     const fotoInput = document.getElementById('foto-input');
     const cropperModal = document.getElementById('cropper-modal');
     const cropperImage = document.getElementById('cropper-image');
@@ -10,42 +32,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const previewImage = document.getElementById('preview-image');
     let cropper = null;
 
-    if (!fotoInput) return;
+    if (!fotoInput || typeof window.Cropper === 'undefined') return;
 
-    fotoInput.addEventListener('change', function(e) {
+    fotoInput.addEventListener('change', function (e) {
         const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                cropperImage.src = event.target.result;
-                cropperModal.classList.remove('hidden');
-                
-                // Inicializar Cropper con relación 1:1
-                if (cropper) {
-                    cropper.destroy();
-                }
-                
-                cropper = new Cropper(cropperImage, {
-                    aspectRatio: 1,
-                    viewMode: 1,
-                    dragMode: 'move',
-                    autoCropArea: 0.8,
-                    restore: false,
-                    guides: true,
-                    center: true,
-                    highlight: false,
-                    cropBoxMovable: true,
-                    cropBoxResizable: true,
-                    toggleable: false,
-                    minCropBoxWidth: 100,
-                    minCropBoxHeight: 100,
-                });
-            };
-            reader.readAsDataURL(file);
-        }
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            cropperImage.src = event.target.result;
+            cropperModal.classList.remove('hidden');
+
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+
+            cropper = new window.Cropper(cropperImage, {
+                container: cropperContainer,
+                template: CROPPER_TEMPLATE,
+            });
+        };
+        reader.readAsDataURL(file);
     });
 
-    cancelCropBtn.addEventListener('click', function() {
+    cancelCropBtn.addEventListener('click', function () {
         cropperModal.classList.add('hidden');
         if (cropper) {
             cropper.destroy();
@@ -57,39 +68,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    cropBtn.addEventListener('click', function() {
-        if (cropper) {
-            const canvas = cropper.getCroppedCanvas({
-                width: 400,
-                height: 400,
-                imageSmoothingEnabled: true,
-                imageSmoothingQuality: 'high',
-            });
+    cropBtn.addEventListener('click', function () {
+        if (!cropper) return;
 
-            canvas.toBlob(function(blob) {
-                const file = new File([blob], 'cropped-image.jpg', { type: 'image/jpeg' });
+        const selection = cropper.getCropperSelection();
+        if (!selection || typeof selection.$toCanvas !== 'function') return;
+
+        selection.$toCanvas({ width: 400, height: 400 }).then(function (canvas) {
+            canvas.toBlob(function (blob) {
+                if (!blob) return;
+
+                const outFile = new File([blob], 'cropped-image.jpg', { type: 'image/jpeg' });
                 const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(file);
+                dataTransfer.items.add(outFile);
                 fotoInput.files = dataTransfer.files;
 
-                // Mostrar preview
-                const reader = new FileReader();
-                reader.onload = function(e) {
+                const prevReader = new FileReader();
+                prevReader.onload = function (ev) {
                     if (previewImage) {
-                        previewImage.src = e.target.result;
+                        previewImage.src = ev.target.result;
                         previewContainer.classList.remove('hidden');
                     }
                 };
-                reader.readAsDataURL(blob);
+                prevReader.readAsDataURL(blob);
 
-                // Ocultar modal
                 cropperModal.classList.add('hidden');
-                if (cropper) {
-                    cropper.destroy();
-                    cropper = null;
-                }
+                cropper.destroy();
+                cropper = null;
             }, 'image/jpeg', 0.9);
-        }
+        });
     });
 });
 

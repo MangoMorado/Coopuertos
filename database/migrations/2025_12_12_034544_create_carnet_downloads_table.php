@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('estado', ['procesando', 'completado', 'error'])->default('procesando');
             $table->string('archivo_zip')->nullable();
             $table->text('error')->nullable();
+            $table->json('logs')->nullable();
             $table->timestamps();
         });
     }

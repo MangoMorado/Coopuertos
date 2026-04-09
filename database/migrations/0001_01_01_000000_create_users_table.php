@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->enum('theme', ['light', 'dark'])->default('light');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

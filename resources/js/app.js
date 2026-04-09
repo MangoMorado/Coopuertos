@@ -75,11 +75,9 @@ window.initSessionMessages = toastUtils.initSessionMessages;
 
 Alpine.start();
 
-// Importar CropperJS
+// Cropper.js v2: estilos en web components (sin CSS global); API distinta a v1
 import Cropper from 'cropperjs';
-import 'cropperjs/dist/cropper.min.css';
 
-// Hacer disponible globalmente para usar en otros scripts
 window.Cropper = Cropper;
 
 // Importar Chart.js

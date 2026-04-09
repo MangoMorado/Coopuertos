@@ -30,11 +30,6 @@ Route::get('/api/vehiculos/search', [VehicleController::class, 'search'])->name(
 // Ruta pública para mostrar un conductor específico por UUID
 Route::get('/conductor/{uuid}', [ConductorController::class, 'show'])->name('conductor.public');
 
-// Dashboard protegido por autenticación y verificación de email
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 // Rutas protegidas por autenticación
 Route::middleware('auth')->group(function () {
     // Perfil de usuario
@@ -44,9 +39,10 @@ Route::middleware('auth')->group(function () {
 
     // API para cambiar tema sin recargar
     Route::post('/api/theme', [ProfileController::class, 'updateTheme'])->name('api.theme.update');
-    // Dashboard
+
+    // Dashboard: una sola ruta con nombre; métricas y datos en DashboardController
     Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->middleware(['auth'])
+        ->middleware('verified')
         ->name('dashboard');
 
     // Conductores

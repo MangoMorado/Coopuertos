@@ -2,13 +2,13 @@
 
 [![Version](https://img.shields.io/badge/Version-0.3%20Beta-yellow?style=for-the-badge)](https://github.com/MangoMorado/coopuertos2/commits/main/)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2+-blue.svg?style=for-the-badge)](https://php.net)
-[![Laravel](https://img.shields.io/badge/Laravel-12-red.svg?style=for-the-badge)](https://laravel.com)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1-blue.svg?style=for-the-badge)](https://tailwindcss.com)
+[![Laravel](https://img.shields.io/badge/Laravel-13-red.svg?style=for-the-badge)](https://laravel.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.2-blue.svg?style=for-the-badge)](https://tailwindcss.com)
 [![Alpine.js](https://img.shields.io/badge/Alpine.js-3.15-green.svg?style=for-the-badge)](https://alpinejs.dev)
 
 # Coopuertos - ERP
 
-Sistema web desarrollado con Laravel 12 para la gestión integral de conductores, vehículos y propietarios de una cooperativa de transporte.
+Sistema web desarrollado con Laravel 13 para la gestión integral de conductores, vehículos y propietarios de una cooperativa de transporte.
 
 ## 🚀 Características Principales
 
@@ -123,8 +123,8 @@ composer run dev
 
 ## 📦 Tecnologías Utilizadas
 
-- **Backend**: Laravel 12
-- **Frontend**: Blade Templates, Tailwind CSS, Alpine.js
+- **Backend**: Laravel 13
+- **Frontend**: Blade Templates, Tailwind CSS 4.x, Alpine.js
 - **Generación de PDFs**: DomPDF
 - **Generación de QR**: SimpleSoftwareIO/simple-qrcode
 - **Autenticación**: Laravel Breeze
