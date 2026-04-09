@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Propietario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Propietario>
+ * @extends Factory<Propietario>
  */
 class PropietarioFactory extends Factory
 {

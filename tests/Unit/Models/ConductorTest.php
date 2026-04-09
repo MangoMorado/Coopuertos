@@ -5,7 +5,10 @@ namespace Tests\Unit\Models;
 use App\Models\Conductor;
 use App\Models\ConductorVehicle;
 use App\Models\Vehicle;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -52,7 +55,7 @@ class ConductorTest extends TestCase
         ]);
 
         // Verificar relación
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class, $conductor->vehicles());
+        $this->assertInstanceOf(BelongsToMany::class, $conductor->vehicles());
         $this->assertCount(2, $conductor->vehicles);
         $this->assertTrue($conductor->vehicles->contains($vehicle1));
         $this->assertTrue($conductor->vehicles->contains($vehicle2));
@@ -112,7 +115,7 @@ class ConductorTest extends TestCase
         ]);
 
         // Verificar relación
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Relations\HasMany::class, $conductor->asignaciones());
+        $this->assertInstanceOf(HasMany::class, $conductor->asignaciones());
         $this->assertCount(2, $conductor->asignaciones);
         $this->assertTrue($conductor->asignaciones->contains($asignacion1));
         $this->assertTrue($conductor->asignaciones->contains($asignacion2));
@@ -245,7 +248,7 @@ class ConductorTest extends TestCase
         ]);
 
         // Verificar que fecha_nacimiento es una instancia de Carbon/Date
-        $this->assertInstanceOf(\Illuminate\Support\Carbon::class, $conductor->fecha_nacimiento);
+        $this->assertInstanceOf(Carbon::class, $conductor->fecha_nacimiento);
         $this->assertEquals('1990-05-15', $conductor->fecha_nacimiento->format('Y-m-d'));
 
         // Verificar que también funciona con DateTime
@@ -253,7 +256,7 @@ class ConductorTest extends TestCase
             'fecha_nacimiento' => new \DateTime('1985-03-20'),
         ]);
 
-        $this->assertInstanceOf(\Illuminate\Support\Carbon::class, $conductor2->fecha_nacimiento);
+        $this->assertInstanceOf(Carbon::class, $conductor2->fecha_nacimiento);
         $this->assertEquals('1985-03-20', $conductor2->fecha_nacimiento->format('Y-m-d'));
     }
 

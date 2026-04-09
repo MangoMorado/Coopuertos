@@ -22,7 +22,7 @@ class AllowMcpLoginTool
      * Si detecta que es la herramienta de login, permite el acceso sin autenticación.
      * Para todas las demás herramientas, auth:sanctum se ejecutará después y requerirá autenticación.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {

@@ -4,6 +4,7 @@ namespace Tests\Unit\Models;
 
 use App\Models\ImportLog;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -273,7 +274,7 @@ class ImportLogTest extends TestCase
         ]);
 
         // Verificar relación
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsTo::class, $importLog->user());
+        $this->assertInstanceOf(BelongsTo::class, $importLog->user());
         $this->assertInstanceOf(User::class, $importLog->user);
         $this->assertEquals($user->id, $importLog->user->id);
     }

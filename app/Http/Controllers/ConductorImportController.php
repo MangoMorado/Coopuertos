@@ -6,6 +6,9 @@ use App\Jobs\ProcesarImportacionConductores;
 use App\Models\ImportLog;
 use App\Services\ConductorImport\ConductorImportFileValidator;
 use App\Services\ConductorImport\ConductorImportProgressTracker;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -35,7 +38,7 @@ class ConductorImportController extends Controller
      * Si hay una sesión de importación activa, carga el ImportLog asociado
      * para mostrar el estado de la última importación.
      *
-     * @return \Illuminate\Contracts\View\View Vista del formulario de importación
+     * @return View Vista del formulario de importación
      */
     public function showImportForm()
     {
@@ -64,7 +67,7 @@ class ConductorImportController extends Controller
      * redirige si es petición HTTP tradicional.
      *
      * @param  Request  $request  Request HTTP con el archivo a importar
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse Respuesta JSON o redirección
+     * @return JsonResponse|RedirectResponse Respuesta JSON o redirección
      *
      * @throws \Exception Si hay errores al guardar el archivo o crear el registro
      */
@@ -181,7 +184,7 @@ class ConductorImportController extends Controller
      * errores, logs, tiempo transcurrido y tiempo estimado restante.
      *
      * @param  string  $sessionId  Identificador único de la sesión de importación
-     * @return \Illuminate\Http\JsonResponse Respuesta JSON con el estado de la importación
+     * @return JsonResponse Respuesta JSON con el estado de la importación
      */
     public function obtenerProgreso($sessionId)
     {

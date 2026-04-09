@@ -30,7 +30,7 @@ function crearDirectorio(string $ruta, int $permisos = 0775): bool
                 echo "✅ Directorio creado: {$ruta}\n";
                 $creado = true;
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo "⚠️  Error al crear directorio {$ruta}: {$e->getMessage()}\n";
 
             return false;
@@ -43,7 +43,7 @@ function crearDirectorio(string $ruta, int $permisos = 0775): bool
     if ($creado && PHP_OS_FAMILY !== 'Windows') {
         try {
             chmod($ruta, $permisos);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo "⚠️  No se pudieron establecer permisos en {$ruta}: {$e->getMessage()}\n";
         }
     }
@@ -117,7 +117,7 @@ if (PHP_OS_FAMILY !== 'Windows') {
                     }
                 }
                 @chmod($dir, 0775);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 echo "⚠️  No se pudieron establecer permisos recursivos en {$dir}: {$e->getMessage()}\n";
             }
         }
@@ -141,7 +141,7 @@ if (! file_exists($publicStorageLink) && file_exists($storageAppPublic)) {
             symlink($storageAppPublic, $publicStorageLink);
             echo "✅ Symlink creado: {$publicStorageLink}\n";
         }
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
         echo "⚠️  No se pudo crear el symlink (esto es normal en algunos entornos): {$e->getMessage()}\n";
         echo "   Puedes crearlo manualmente con: php artisan storage:link\n";
     }

@@ -5,6 +5,9 @@ namespace Tests\Unit\Models;
 use App\Models\Conductor;
 use App\Models\ConductorVehicle;
 use App\Models\Vehicle;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -35,7 +38,7 @@ class VehicleTest extends TestCase
         ]);
 
         // Verificar relación
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class, $vehicle->conductores());
+        $this->assertInstanceOf(BelongsToMany::class, $vehicle->conductores());
         $this->assertCount(2, $vehicle->conductores);
         $this->assertTrue($vehicle->conductores->contains($conductor1));
         $this->assertTrue($vehicle->conductores->contains($conductor2));
@@ -95,7 +98,7 @@ class VehicleTest extends TestCase
         ]);
 
         // Verificar relación
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Relations\HasMany::class, $vehicle->asignaciones());
+        $this->assertInstanceOf(HasMany::class, $vehicle->asignaciones());
         $this->assertCount(2, $vehicle->asignaciones);
         $this->assertTrue($vehicle->asignaciones->contains($asignacion1));
         $this->assertTrue($vehicle->asignaciones->contains($asignacion2));
@@ -109,7 +112,7 @@ class VehicleTest extends TestCase
         ]);
 
         // Verificar relación belongsTo
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsTo::class, $vehicle->conductor());
+        $this->assertInstanceOf(BelongsTo::class, $vehicle->conductor());
 
         // Verificar que se puede acceder al conductor
         $this->assertNotNull($vehicle->conductor);

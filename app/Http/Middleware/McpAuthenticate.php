@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\PersonalAccessToken;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -19,7 +20,7 @@ class McpAuthenticate
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -59,7 +60,7 @@ class McpAuthenticate
         // Intentar autenticar con Sanctum usando el token Bearer
         if ($token = $request->bearerToken()) {
             // Autenticar usando Sanctum
-            $user = \Laravel\Sanctum\PersonalAccessToken::findToken($token)?->tokenable;
+            $user = PersonalAccessToken::findToken($token)?->tokenable;
 
             if ($user) {
                 Auth::guard('sanctum')->setUser($user);

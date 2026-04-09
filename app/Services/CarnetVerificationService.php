@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\CarnetTemplate;
 use App\Models\Conductor;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\File;
 
 /**
@@ -173,7 +174,7 @@ class CarnetVerificationService
      * Utiliza verificarCarnetsFaltantes() para obtener los conductores sin carnet
      * y con archivos faltantes, luego retorna una colección Eloquent con esos conductores.
      *
-     * @return \Illuminate\Database\Eloquent\Collection<int, Conductor> Colección de conductores que necesitan regeneración
+     * @return Collection<int, Conductor> Colección de conductores que necesitan regeneración
      */
     public function obtenerConductoresQueNecesitanRegeneracion()
     {

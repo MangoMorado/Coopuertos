@@ -7,6 +7,7 @@ use App\Http\Requests\Api\StoreConductorRequest;
 use App\Http\Requests\Api\UpdateConductorRequest;
 use App\Http\Resources\Api\ConductorResource;
 use App\Models\Conductor;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use OpenApi\Attributes as OA;
@@ -305,7 +306,7 @@ class ConductorController extends Controller
      * @param  string  $uuid  UUID del conductor
      * @return JsonResponse Respuesta JSON con los datos públicos del conductor
      *
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException Si el conductor no existe
+     * @throws ModelNotFoundException Si el conductor no existe
      */
     public function publicShow(string $uuid): JsonResponse
     {

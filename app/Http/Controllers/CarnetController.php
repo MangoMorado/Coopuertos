@@ -7,11 +7,14 @@ use App\Models\CarnetGenerationLog;
 use App\Models\CarnetTemplate;
 use App\Models\Conductor;
 use App\Services\CarnetTemplateService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use ZipArchive;
 
 /**
@@ -36,7 +39,7 @@ class CarnetController extends Controller
      * Obtiene la plantilla activa y todos los conductores con sus asignaciones
      * de vehículos para mostrar en la vista principal de carnets.
      *
-     * @return \Illuminate\Contracts\View\View Vista de lista de carnets
+     * @return View Vista de lista de carnets
      */
     public function index()
     {
@@ -53,7 +56,7 @@ class CarnetController extends Controller
      * Si no, busca el último proceso de generación completado para mostrar.
      *
      * @param  Request  $request  Request HTTP con parámetro opcional 'session_id'
-     * @return \Illuminate\Contracts\View\View Vista de exportación de carnets
+     * @return View Vista de exportación de carnets
      */
     public function exportar(Request $request)
     {
@@ -83,7 +86,7 @@ class CarnetController extends Controller
      * supervisor (ProcesarGeneracionCarnets) para procesar la generación en segundo plano.
      *
      * @param  Request  $request  Request HTTP con parámetro opcional 'conductor_ids' (array)
-     * @return \Illuminate\Http\RedirectResponse Redirección a la página de exportación
+     * @return RedirectResponse Redirección a la página de exportación
      */
     public function generar(Request $request)
     {
@@ -157,7 +160,7 @@ class CarnetController extends Controller
      * Obtiene la plantilla activa y las variables disponibles junto con su
      * configuración para mostrar en el editor de plantillas.
      *
-     * @return \Illuminate\Contracts\View\View Vista de personalización de plantillas
+     * @return View Vista de personalización de plantillas
      */
     public function personalizar()
     {
@@ -179,7 +182,7 @@ class CarnetController extends Controller
      * nueva plantilla activa con la configuración de variables.
      *
      * @param  Request  $request  Request HTTP con datos de la plantilla (nombre, imagen, variables_config)
-     * @return \Illuminate\Http\RedirectResponse Redirección a la lista de carnets
+     * @return RedirectResponse Redirección a la lista de carnets
      */
     public function guardarPlantilla(Request $request)
     {
@@ -272,7 +275,7 @@ class CarnetController extends Controller
      * se elimina después de la descarga ya que los carnets se guardan permanentemente.
      *
      * @param  string  $sessionId  Identificador único de la sesión de generación
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|\Illuminate\Http\RedirectResponse Archivo ZIP o redirección con error
+     * @return BinaryFileResponse|RedirectResponse Archivo ZIP o redirección con error
      */
     public function descargarZip(string $sessionId)
     {
@@ -352,7 +355,7 @@ class CarnetController extends Controller
      * (ej: juanito-perez.svg) en un directorio temporal, crea un ZIP con todos
      * los QRs y lo descarga. El directorio temporal se limpia después de la descarga.
      *
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|\Illuminate\Http\RedirectResponse Archivo ZIP o redirección con error
+     * @return BinaryFileResponse|RedirectResponse Archivo ZIP o redirección con error
      */
     public function exportarQRs()
     {

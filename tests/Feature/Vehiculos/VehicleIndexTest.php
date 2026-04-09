@@ -6,6 +6,7 @@ use App\Models\Conductor;
 use App\Models\ConductorVehicle;
 use App\Models\User;
 use App\Models\Vehicle;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -41,7 +42,7 @@ class VehicleIndexTest extends TestCase
 
         $response->assertStatus(200);
         $vehiculos = $response->viewData('vehiculos');
-        $this->assertInstanceOf(\Illuminate\Contracts\Pagination\LengthAwarePaginator::class, $vehiculos);
+        $this->assertInstanceOf(LengthAwarePaginator::class, $vehiculos);
         $this->assertEquals(10, $vehiculos->perPage());
         $this->assertGreaterThanOrEqual(1, $vehiculos->count());
     }

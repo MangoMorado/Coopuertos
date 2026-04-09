@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -99,7 +100,7 @@ class CarnetTemplateService
      * Genera un nombre único usando UUID para evitar colisiones. Crea el directorio
      * si no existe y verifica permisos de escritura.
      *
-     * @param  \Illuminate\Http\UploadedFile  $file  Archivo de imagen subido
+     * @param  UploadedFile  $file  Archivo de imagen subido
      * @return string Ruta relativa de la imagen almacenada (ej: 'uploads/carnets/uuid.jpg')
      *
      * @throws \RuntimeException Si no se puede crear el directorio o no tiene permisos de escritura

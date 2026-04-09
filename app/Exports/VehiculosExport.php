@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Vehicle;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -10,7 +11,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class VehiculosExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function collection()
     {
@@ -39,7 +40,7 @@ class VehiculosExport implements FromCollection, WithHeadings, WithMapping
     }
 
     /**
-     * @param  \App\Models\Vehicle  $vehiculo
+     * @param  Vehicle  $vehiculo
      */
     public function map($vehiculo): array
     {

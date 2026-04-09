@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Conductores;
 
+use App\Jobs\ProcesarImportacionConductores;
 use App\Models\Conductor;
 use App\Models\ImportLog;
 use App\Models\User;
@@ -142,7 +143,7 @@ class ConductorImportTest extends TestCase
         ]);
 
         // Verificar que se encoló el job
-        Queue::assertPushed(\App\Jobs\ProcesarImportacionConductores::class);
+        Queue::assertPushed(ProcesarImportacionConductores::class);
 
         // Limpiar archivo temporal
         File::delete(storage_path('app/temp_test.csv'));
@@ -179,7 +180,7 @@ class ConductorImportTest extends TestCase
         ]);
 
         // Verificar que se encoló el job
-        Queue::assertPushed(\App\Jobs\ProcesarImportacionConductores::class);
+        Queue::assertPushed(ProcesarImportacionConductores::class);
 
         // Limpiar archivo temporal
         File::delete(storage_path('app/temp_test.xlsx'));
@@ -276,7 +277,7 @@ class ConductorImportTest extends TestCase
         ]);
 
         // Verificar que el job se encoló en la cola correcta
-        Queue::assertPushed(\App\Jobs\ProcesarImportacionConductores::class, function ($job) {
+        Queue::assertPushed(ProcesarImportacionConductores::class, function ($job) {
             return $job->queue === 'importaciones';
         });
 
@@ -481,7 +482,7 @@ class ConductorImportTest extends TestCase
         ]);
 
         // Verificar que se encoló el job (esto significa que el archivo fue aceptado)
-        Queue::assertPushed(\App\Jobs\ProcesarImportacionConductores::class);
+        Queue::assertPushed(ProcesarImportacionConductores::class);
 
         // Limpiar archivo temporal
         File::delete(storage_path('app/temp_test.csv'));

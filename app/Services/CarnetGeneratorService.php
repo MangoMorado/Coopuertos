@@ -6,6 +6,7 @@ use App\Models\CarnetTemplate;
 use App\Models\Conductor;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /**
  * Servicio de generación de carnets para conductores
@@ -288,7 +289,7 @@ class CarnetGeneratorService
         $qrSize = $config['size'] ?? 100;
         try {
             // Usar la misma generación que el frontend
-            $qrCodeSvg = \SimpleSoftwareIO\QrCode\Facades\QrCode::size($qrSize)
+            $qrCodeSvg = QrCode::size($qrSize)
                 ->format('svg')
                 ->generate($qrData);
 

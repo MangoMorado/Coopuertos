@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 /**
@@ -25,7 +26,7 @@ use Illuminate\Support\Str;
  * @property string|null $vehiculo Placa del vehículo asignado (legacy, usar relaciones)
  * @property string|null $celular Número de teléfono celular
  * @property string|null $correo Dirección de correo electrónico
- * @property \Illuminate\Support\Carbon|null $fecha_nacimiento Fecha de nacimiento
+ * @property Carbon|null $fecha_nacimiento Fecha de nacimiento
  * @property string|null $otra_profesion Otra profesión del conductor
  * @property string|null $nivel_estudios Nivel de estudios alcanzado
  * @property bool $relevo Indica si el conductor es relevo

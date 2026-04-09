@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use enshrined\svgSanitize\Sanitizer;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
@@ -127,7 +128,7 @@ class ImageProcessorService
 
             // Sanitizar SVG (opcional, pero recomendado)
             try {
-                $sanitizer = new \enshrined\svgSanitize\Sanitizer;
+                $sanitizer = new Sanitizer;
                 $svgContent = $sanitizer->sanitize($svgContent);
             } catch (\Exception $e) {
                 Log::warning('Error sanitizando SVG: '.$e->getMessage());

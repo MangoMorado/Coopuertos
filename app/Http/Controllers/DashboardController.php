@@ -6,6 +6,8 @@ use App\Models\Conductor;
 use App\Models\Propietario;
 use App\Models\User;
 use App\Models\Vehicle;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Controlador web para el dashboard principal
@@ -22,7 +24,7 @@ class DashboardController extends Controller
      * Obtiene estadísticas optimizadas del sistema, calcula próximos cumpleaños
      * de conductores (próximos 7 días), y prepara todos los datos para la vista.
      *
-     * @return \Illuminate\Contracts\View\View Vista del dashboard principal
+     * @return View Vista del dashboard principal
      */
     public function index()
     {
@@ -161,10 +163,10 @@ class DashboardController extends Controller
 
         // Usuarios - Ya optimizado en Fase 1
         $usuariosCount = User::count();
-        $usuariosPorRolData = \Illuminate\Support\Facades\DB::table('model_has_roles')
+        $usuariosPorRolData = DB::table('model_has_roles')
             ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
             ->whereIn('roles.name', ['Mango', 'Admin', 'User'])
-            ->select('roles.name', \Illuminate\Support\Facades\DB::raw('COUNT(*) as total'))
+            ->select('roles.name', DB::raw('COUNT(*) as total'))
             ->groupBy('roles.name')
             ->pluck('total', 'name')
             ->toArray();

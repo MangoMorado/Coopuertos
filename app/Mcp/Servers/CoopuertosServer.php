@@ -42,6 +42,8 @@ use App\Mcp\Tools\ObtenerPlantillaActiva;
 use App\Mcp\Tools\ObtenerSaludSistema;
 use App\Mcp\Tools\PersonalizarPlantilla;
 use Laravel\Mcp\Server;
+use Laravel\Mcp\Server\Prompt;
+use Laravel\Mcp\Server\Tool;
 
 class CoopuertosServer extends Server
 {
@@ -127,7 +129,7 @@ class CoopuertosServer extends Server
     /**
      * The tools registered with this MCP server.
      *
-     * @var array<int, class-string<\Laravel\Mcp\Server\Tool>>
+     * @var array<int, class-string<Tool>>
      */
     protected array $tools = [
         // Autenticación
@@ -174,7 +176,7 @@ class CoopuertosServer extends Server
     /**
      * The prompts registered with this MCP server.
      *
-     * @var array<int, class-string<\Laravel\Mcp\Server\Prompt>>
+     * @var array<int, class-string<Prompt>>
      */
     protected array $prompts = [
         PromptGenerarReporte::class,
@@ -187,7 +189,7 @@ class CoopuertosServer extends Server
     /**
      * The resources registered with this MCP server.
      *
-     * @var array<int, class-string<\Laravel\Mcp\Server\Resource>>
+     * @var array<int, class-string<Server\Resource>>
      */
     protected array $resources = [
         DocumentacionProyecto::class,

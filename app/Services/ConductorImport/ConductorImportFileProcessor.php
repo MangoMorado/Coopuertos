@@ -3,6 +3,7 @@
 namespace App\Services\ConductorImport;
 
 use App\Models\Conductor;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx as XlsxReader;
@@ -300,7 +301,7 @@ class ConductorImportFileProcessor
                 'mensaje' => "Fila {$lineaNumero}: Conductor importado exitosamente",
             ];
 
-        } catch (\Illuminate\Database\QueryException $e) {
+        } catch (QueryException $e) {
             $errorMsg = $this->cleanErrorMessage($e->getMessage());
 
             return [

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * Modelo ConductorVehicle
@@ -16,8 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $conductor_id ID del conductor asignado
  * @property int $vehicle_id ID del vehículo asignado
  * @property string $estado Estado de la asignación (activo, inactivo)
- * @property \Illuminate\Support\Carbon|null $fecha_asignacion Fecha en que se realizó la asignación
- * @property \Illuminate\Support\Carbon|null $fecha_desasignacion Fecha en que se desasignó el vehículo
+ * @property Carbon|null $fecha_asignacion Fecha en que se realizó la asignación
+ * @property Carbon|null $fecha_desasignacion Fecha en que se desasignó el vehículo
  * @property string|null $observaciones Observaciones sobre la asignación
  * @property-read Conductor $conductor Relación con el conductor
  * @property-read Vehicle $vehicle Relación con el vehículo

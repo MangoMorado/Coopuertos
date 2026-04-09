@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Conductor;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -10,7 +11,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class ConductoresExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function collection()
     {
@@ -37,7 +38,7 @@ class ConductoresExport implements FromCollection, WithHeadings, WithMapping
     }
 
     /**
-     * @param  \App\Models\Conductor  $conductor
+     * @param  Conductor  $conductor
      */
     public function map($conductor): array
     {

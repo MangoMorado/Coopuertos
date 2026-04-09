@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * Modelo CarnetGenerationLog
@@ -25,8 +26,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property array<int, array{timestamp: string, tipo: string, mensaje: string, data: array}>|null $logs Array de logs detallados
  * @property string|null $archivo_zip Ruta del archivo ZIP generado
  * @property string|null $error Mensaje de error si la generación falló
- * @property \Illuminate\Support\Carbon|null $started_at Fecha y hora de inicio
- * @property \Illuminate\Support\Carbon|null $completed_at Fecha y hora de finalización
+ * @property Carbon|null $started_at Fecha y hora de inicio
+ * @property Carbon|null $completed_at Fecha y hora de finalización
  * @property-read int $tiempo_transcurrido Tiempo transcurrido en segundos (accessor)
  * @property-read int $tiempo_estimado_restante Tiempo estimado restante en segundos (accessor)
  */

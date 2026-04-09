@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\HealthCheckService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
@@ -24,7 +26,7 @@ class ConfiguracionController extends Controller
      * y el estado actual de permisos por rol y módulo. También obtiene el estado
      * de salud del sistema para mostrar en la vista.
      *
-     * @return \Illuminate\Contracts\View\View Vista de configuración de permisos
+     * @return View Vista de configuración de permisos
      */
     public function index()
     {
@@ -68,7 +70,7 @@ class ConfiguracionController extends Controller
      * Usa transacciones de base de datos para garantizar consistencia.
      *
      * @param  Request  $request  Request HTTP con array 'modulos' indexado por nombre de rol
-     * @return \Illuminate\Http\RedirectResponse Redirección a la página de configuración
+     * @return RedirectResponse Redirección a la página de configuración
      *
      * @throws \Exception Si hay errores al actualizar los permisos
      */

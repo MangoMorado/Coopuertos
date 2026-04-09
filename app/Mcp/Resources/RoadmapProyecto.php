@@ -3,6 +3,8 @@
 namespace App\Mcp\Resources;
 
 use Illuminate\Support\Facades\File;
+use Laravel\Mcp\Request;
+use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Resource;
 
 class RoadmapProyecto extends Resource
@@ -38,14 +40,14 @@ class RoadmapProyecto extends Resource
     /**
      * Handle the resource request.
      */
-    public function handle(\Laravel\Mcp\Request $request): \Laravel\Mcp\Response
+    public function handle(Request $request): Response
     {
         $roadmapPath = base_path('roadmap.md');
 
         if (File::exists($roadmapPath)) {
-            return \Laravel\Mcp\Response::text(File::get($roadmapPath));
+            return Response::text(File::get($roadmapPath));
         }
 
-        return \Laravel\Mcp\Response::text('# Roadmap del Proyecto Coopuertos\n\nRoadmap no disponible.');
+        return Response::text('# Roadmap del Proyecto Coopuertos\n\nRoadmap no disponible.');
     }
 }

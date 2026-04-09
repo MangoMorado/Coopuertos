@@ -4,6 +4,7 @@ namespace Tests\Unit\Models;
 
 use App\Models\CarnetGenerationLog;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -278,7 +279,7 @@ class CarnetGenerationLogTest extends TestCase
         ]);
 
         // Verificar relación
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsTo::class, $log->user());
+        $this->assertInstanceOf(BelongsTo::class, $log->user());
         $this->assertInstanceOf(User::class, $log->user);
         $this->assertEquals($user->id, $log->user->id);
     }

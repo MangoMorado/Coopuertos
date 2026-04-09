@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
  * Modelo Vehicle
@@ -25,7 +26,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int|null $capacidad_pasajeros Capacidad de pasajeros
  * @property float|null $capacidad_carga_kg Capacidad de carga en kilogramos
  * @property string|null $combustible Tipo de combustible
- * @property \Illuminate\Support\Carbon|null $ultima_revision_tecnica Fecha de última revisión técnica
+ * @property Carbon|null $ultima_revision_tecnica Fecha de última revisión técnica
  * @property string|null $estado Estado del vehículo (activo, inactivo, etc.)
  * @property string|null $propietario_nombre Nombre del propietario del vehículo
  * @property int|null $conductor_id ID del conductor asignado (legacy, usar relaciones)

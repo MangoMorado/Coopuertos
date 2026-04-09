@@ -4,6 +4,7 @@ namespace App\Services\ConductorImport;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\MessageBag;
 
 /**
  * Validador de archivos para importación de conductores
@@ -23,7 +24,7 @@ class ConductorImportFileValidator
      * @return array{
      *     valid: bool,
      *     extension?: string,
-     *     errors?: \Illuminate\Support\MessageBag
+     *     errors?: MessageBag
      * }
      */
     public function validate(UploadedFile $file): array

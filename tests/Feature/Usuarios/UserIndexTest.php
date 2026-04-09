@@ -3,6 +3,7 @@
 namespace Tests\Feature\Usuarios;
 
 use App\Models\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -77,7 +78,7 @@ class UserIndexTest extends TestCase
 
         $response->assertStatus(200);
         $users = $response->viewData('users');
-        $this->assertInstanceOf(\Illuminate\Contracts\Pagination\LengthAwarePaginator::class, $users);
+        $this->assertInstanceOf(LengthAwarePaginator::class, $users);
         $this->assertEquals(15, $users->perPage());
         $this->assertGreaterThanOrEqual(1, $users->count());
     }

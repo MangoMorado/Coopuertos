@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Middleware\McpAuthenticate;
 use App\Mcp\Servers\CoopuertosServer;
 use Illuminate\Support\Facades\Route;
 use Laravel\Mcp\Facades\Mcp;
@@ -120,4 +121,4 @@ require __DIR__.'/auth.php';
 
 // Servidor MCP para Coopuertos (protegido con autenticación personalizada)
 Mcp::web('/mcp/coopuertos', CoopuertosServer::class)
-    ->middleware(\App\Http\Middleware\McpAuthenticate::class);
+    ->middleware(McpAuthenticate::class);

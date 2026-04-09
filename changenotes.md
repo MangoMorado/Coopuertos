@@ -1,5 +1,8 @@
 # Coopuertos App
 
+## *v. 0.3.3.4.3*
+- Estilo de código: Ejecución de Laravel Pint (`vendor/bin/pint`) sobre el proyecto. Se procesaron 259 archivos y se corrigieron 67 incidencias de estilo (tipos totalmente calificados en `declare(strict_types=1)`, orden de `use`, espaciado de operadores unarios, posición de llaves, `!` con espacio correcto, indentación en arrays/config, imports no usados, línea en blanco tras imports, etc.). Cambios exclusivamente de formato y convenciones; sin alteración de comportamiento.
+
 ## *v. 0.3.3.4.2*
 - Actualizacion a Laravel 13 y deps (Swagger 11, Spatie 7, PHPUnit 13, Vite 8, Tailwind 4.2, Cropper 2).
 - Migraciones: columnas en migraciones base; quitadas las incrementales redundantes.

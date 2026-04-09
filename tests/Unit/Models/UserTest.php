@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -32,7 +33,7 @@ class UserTest extends TestCase
 
         // Verificar relación
         $this->assertTrue($user->relationLoaded('roles') === false || $user->relationLoaded('roles') === true);
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Collection::class, $user->roles);
+        $this->assertInstanceOf(Collection::class, $user->roles);
         $this->assertCount(2, $user->roles);
         $this->assertTrue($user->hasRole('Mango'));
         $this->assertTrue($user->hasRole('Admin'));

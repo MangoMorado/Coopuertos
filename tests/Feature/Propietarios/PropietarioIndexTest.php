@@ -4,6 +4,7 @@ namespace Tests\Feature\Propietarios;
 
 use App\Models\Propietario;
 use App\Models\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -49,7 +50,7 @@ class PropietarioIndexTest extends TestCase
 
         $response->assertStatus(200);
         $propietarios = $response->viewData('propietarios');
-        $this->assertInstanceOf(\Illuminate\Contracts\Pagination\LengthAwarePaginator::class, $propietarios);
+        $this->assertInstanceOf(LengthAwarePaginator::class, $propietarios);
         $this->assertEquals(10, $propietarios->perPage());
         $this->assertGreaterThanOrEqual(1, $propietarios->count());
     }

@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Propietario;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -10,7 +11,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class PropietariosExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function collection()
     {
@@ -32,7 +33,7 @@ class PropietariosExport implements FromCollection, WithHeadings, WithMapping
     }
 
     /**
-     * @param  \App\Models\Propietario  $propietario
+     * @param  Propietario  $propietario
      */
     public function map($propietario): array
     {

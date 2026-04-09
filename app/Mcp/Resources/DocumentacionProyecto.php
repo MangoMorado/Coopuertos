@@ -3,6 +3,8 @@
 namespace App\Mcp\Resources;
 
 use Illuminate\Support\Facades\File;
+use Laravel\Mcp\Request;
+use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Resource;
 
 class DocumentacionProyecto extends Resource
@@ -38,14 +40,14 @@ class DocumentacionProyecto extends Resource
     /**
      * Handle the resource request.
      */
-    public function handle(\Laravel\Mcp\Request $request): \Laravel\Mcp\Response
+    public function handle(Request $request): Response
     {
         $readmePath = base_path('README.md');
 
         if (File::exists($readmePath)) {
-            return \Laravel\Mcp\Response::text(File::get($readmePath));
+            return Response::text(File::get($readmePath));
         }
 
-        return \Laravel\Mcp\Response::text('# Documentación del Proyecto Coopuertos\n\nDocumentación no disponible.');
+        return Response::text('# Documentación del Proyecto Coopuertos\n\nDocumentación no disponible.');
     }
 }

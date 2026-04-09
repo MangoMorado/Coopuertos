@@ -5,6 +5,7 @@ namespace Tests\Feature\Carnets;
 use App\Models\CarnetTemplate;
 use App\Models\Conductor;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
@@ -107,7 +108,7 @@ class CarnetIndexTest extends TestCase
 
         $response->assertStatus(200);
         $conductoresEnVista = $response->viewData('conductores');
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Collection::class, $conductoresEnVista);
+        $this->assertInstanceOf(Collection::class, $conductoresEnVista);
         $this->assertGreaterThanOrEqual(3, $conductoresEnVista->count());
 
         // Verificar que todos los conductores están presentes

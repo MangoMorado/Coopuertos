@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 
 /**
@@ -15,7 +17,7 @@ class DocumentacionController extends Controller
      * Si la documentación existe en docs/api, la sirve.
      * Si no existe, muestra un mensaje indicando que debe generarse.
      *
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return View|Response
      */
     public function index()
     {
@@ -62,7 +64,7 @@ class DocumentacionController extends Controller
      * Servir archivos estáticos de la documentación (CSS, JS, imágenes, HTML, etc.)
      *
      * @param  string|null  $path  Ruta del archivo relativo a docs/api
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function asset(?string $path = null)
     {

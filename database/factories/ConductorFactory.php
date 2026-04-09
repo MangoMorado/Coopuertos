@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Conductor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Conductor>
+ * @extends Factory<Conductor>
  */
 class ConductorFactory extends Factory
 {
